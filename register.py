@@ -4,19 +4,18 @@ from datetime import *
 import time
 import sys
 import mysql.connector
-# First we set our credentials
+from catalogue import catalogue_bp
+
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 app = Flask(__name__)
 app.debug = True
-cnx = mysql.connector.connect(user='root', password='dacjd156n.',host='some-mysql')
+
+cnx = mysql.connector.connect(user='root', password='6#D^F[RsXF]xdcV>',host='34.89.18.21')
 cursor = cnx.cursor()
 create_database(cnx,cursor)
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
 
 @app.route('/Sub')
 def sub_page():
@@ -26,15 +25,15 @@ def sub_page():
 def login():
     error = None
     if request.method == 'POST':
-        username= request.form['username']
+        email= request.form['username']
         password= request.form['password']
-
-        cnx = mysql.connector.connect(user='root', password='dacjd156n.',host='some-mysql')
+        name= "new user"
+        cnx = mysql.connector.connect(user='root', password='6#D^F[RsXF]xdcV>',host='34.89.18.21')
         cursor = cnx.cursor()
-        insert_user(cnx,cursor,username,password)
-
-        return redirect(url_for('login'))
+        insert_user(cnx,cursor,email,password)
+       
+        return redirect('http://35.197.239.69:5000/cat_page')
     return render_template('login.html', error=error)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port="5000")
+    app.run(host='0.0.0.0',port="8080")

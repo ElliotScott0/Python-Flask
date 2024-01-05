@@ -6,12 +6,13 @@ import json
 import requests
 # First we set our credentials
 
-from flask import Flask, request, session, g, redirect, url_for, abort, \
+from flask import Flask, Blueprint, request, session, g, redirect, url_for, abort, \
      render_template, flash
-app = Flask(__name__)
-app.debug = True
+catalogue_app =Flask(__name__)
+catalogue_app.debug = True
 
-@app.route('/Video/<video>')
+
+@catalogue_app.route('/Video/<video>')
 def video_page(video):
     print (video)
     url = 'http://34.89.3.47/myflix/videos?filter={"video.uuid":"'+video+'"}'
@@ -40,7 +41,7 @@ def video_page(video):
                       pic=index[key][key2]
     return render_template('video.html', name=video,file=videofile,pic=pic)
 
-@app.route('/')
+@catalogue_app.route('/cat_page')
 def cat_page():
     url = "http://34.89.3.47/myflix/videos"
     headers = {}
@@ -71,16 +72,16 @@ def cat_page():
                   if (key2=="thumb"):
                       thumb=index[key][key2]
                   if (key2=="uuid"):
-                      uuid=index[key][key2]  
+                      uuid=index[key][key2]
               html=html+'<h3>'+name+'</h3>'
               ServerIP=request.host.split(':')[0]
-              html=html+'<a href="http://'+ServerIP+'/Video/'+uuid+'">'
+              html=html+'<a href="http://'+ServerIP+':5000/Video/'+uuid+'">'
               html=html+'<img src="http://35.246.124.242/pics/'+thumb+'">'
-              html=html+"</a>"        
+              html=html+"</a>"
               print("=======================")
 
     return html
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port="80")
+    catalogue_app.run(host='0.0.0.0',port="5000")

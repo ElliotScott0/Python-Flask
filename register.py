@@ -1,11 +1,10 @@
-
 from db import *
 from datetime import *
 import time
 import sys
 import mysql.connector
-from catalogue import catalogue_bp
 
+# First we set our credentials
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
@@ -32,7 +31,7 @@ def login():
         cursor = cnx.cursor()
         insert_user(cnx,cursor,email,password)
        
-        return redirect('http://35.197.239.69:5000/cat_page')
+        return redirect('/cat_page')
     return render_template('login.html', error=error)
 
 if __name__ == '__main__':

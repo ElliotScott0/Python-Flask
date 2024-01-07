@@ -1,5 +1,6 @@
 
 from db import *
+from catalogue import *
 from datetime import *
 import time
 import sys
@@ -9,6 +10,8 @@ import mysql.connector
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
+
+from register import app as reg_app
 app = Flask(__name__)
 app.debug = True
 cnx = mysql.connector.connect(user='myflix-user-db', password='password',host='34.89.18.21')
@@ -27,12 +30,12 @@ def login():
         username= request.form['username']
         password= request.form['password']
 
-
+       
         login = find_user(username,password)
         if login == 1:
-             return redirect('http://35.197.239.69:5000/cat_page')
+             return redirect('/cat_page')
         else:
-            return redirect('http://35.197.239.69:8080/register')
+             return redirect('/register')
     return render_template('login.html', error=error)
 
 

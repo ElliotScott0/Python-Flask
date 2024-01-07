@@ -1,12 +1,13 @@
 FROM python:3.9
+
 ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update && apt-get install -y supervisor
+
 RUN pip install --upgrade pip
 COPY requirements.txt /home/
 RUN pip install -r /home/requirements.txt
 RUN pip install mysql-connector-python
-COPY *.py /home/
-COPY templates/*.* /home/templates/
 HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:80 || exit 1
 RUN apt-get update && apt-get install -y supervisor
 RUN mkdir -p /etc/supervisor/conf.d

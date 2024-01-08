@@ -56,8 +56,23 @@ def cat_page():
       print("Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message']))
       return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])
     jResp = response.json()
+
+    url = "http://128.0.0.4:81/movies"  # Replace with the actual URL to fetch movies
+    response = requests.get(url)
+    if response.status_code != 200:
+      print("Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message']))
+      return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])
+    rec = response.json()
+    
     print (type(jResp))
     html="<h2> Your Videos</h2>"
+    html = "<h1>List of Movies</h1>"
+    html = "<ul>"
+    # Loop through movies and add list items to HTML string
+    for movie in rec:
+        html += f"<li>{movie}</li>"
+    html += "</ul>"
+    html=html+"<h2> Your Videos</h2>"
     for index in jResp:
        #print (json.dumps(index))
        print ("----------------")

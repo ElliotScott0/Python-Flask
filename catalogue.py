@@ -61,6 +61,7 @@ def cat_page():
     params = {"number": 2}  # Adjust the parameter as needed
 
     response = requests.get(url, params=params, allow_redirects=True)
+    print(response.status_code)
 
 
     if response.status_code != 200:

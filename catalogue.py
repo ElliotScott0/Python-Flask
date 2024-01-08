@@ -60,7 +60,8 @@ def cat_page():
     url = "http://128.0.0.4:81"
     params = {"number": 2}  # Adjust the parameter as needed
 
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, allow_redirects=True)
+
 
     if response.status_code != 200:
         print("Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status_code, response.text))

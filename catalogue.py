@@ -76,7 +76,7 @@ def cat_page():
               html=html+'<h3>'+name+'</h3>'
               ServerIP=request.host.split(':')[0]
               html=html+'<a href="http://'+ServerIP+':5000/Video/'+uuid+'">'
-              html=html+'<img src="http://128.0.0.8/pics/'+thumb+'">'
+              html=html+'<img src="http://35.246.124.242/pics/'+thumb+'">'
               html=html+"</a>"
               print("=======================")
 

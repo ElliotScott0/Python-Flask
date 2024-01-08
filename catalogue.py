@@ -15,7 +15,7 @@ catalogue_app.debug = True
 @catalogue_app.route('/Video/<video>')
 def video_page(video):
     print (video)
-    url = 'http://34.89.3.47/myflix/videos?filter={"video.uuid":"'+video+'"}'
+    url = 'http://128.0.0.7/myflix/videos?filter={"video.uuid":"'+video+'"}'
     headers = {}
     payload = json.dumps({ })
     print (request.endpoint)
@@ -43,7 +43,7 @@ def video_page(video):
 
 @catalogue_app.route('/cat_page')
 def cat_page():
-    url = "http://34.89.3.47/myflix/videos"
+    url = "http://128.0.0.7/myflix/videos"
     headers = {}
     payload = json.dumps({ })
 

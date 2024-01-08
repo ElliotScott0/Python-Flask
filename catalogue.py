@@ -58,7 +58,7 @@ def cat_page():
     jResp = response.json()
 
     url = "http://128.0.0.4:81/movies"  # Replace with the actual URL to fetch movies
-    response = requests.get(url, params=2)
+    response = requests.get(url, params="2")
     if response.status_code != 200:
       print("Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message']))
       return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])

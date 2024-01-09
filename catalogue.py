@@ -69,7 +69,7 @@ def cat_page():
         
 
         # Send data to the server
-        message = 2
+        message = "2"
         client_socket.sendall(message.encode('utf-8'))
 
         # Receive data from the server
@@ -88,8 +88,8 @@ def cat_page():
     html += "<ul>"
     
     # Loop through movies and add list items to HTML string
-    for movie in rec:
-        html += f"<li>{data}</li>"
+    for movie in data:
+        html += f"<li>{movie}</li>"
 
     html += "</ul>"
     html=html+"<h2> Your Videos</h2>"

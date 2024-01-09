@@ -58,7 +58,7 @@ def cat_page():
     jResp = response.json()
 
     url = "http://128.0.0.4:81"
-    params = {"number": 2}  # Adjust the parameter as needed
+    params = {2}  # Adjust the parameter as needed
 
     response = requests.get(url, params=params, allow_redirects=True)
     print(response)

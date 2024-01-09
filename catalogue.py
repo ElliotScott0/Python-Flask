@@ -96,7 +96,7 @@ def cat_page():
     
     # Loop through movies and add list items to HTML string
     for movie in rec:
-        html += f"<li>{movie}</li>"
+        html += f"<li>{data}</li>"
 
     html += "</ul>"
     html=html+"<h2> Your Videos</h2>"

@@ -57,18 +57,18 @@ def cat_page():
       return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])
     jResp = response.json()
 
-    url = "http://128.0.0.4"
+    host = "128.0.0.4"
     port = 80
     params = {2}  # Adjust the parameter as needed
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    server_socket.bind((url, port))
+    server_socket.bind((host, port))
 
     # Listen for incoming connections
     server_socket.listen()
 
-    print(f"Listening on {url}:{port}")
+    print(f"Listening on {host}:{port}")
 
     
     # Accept a connection from a client

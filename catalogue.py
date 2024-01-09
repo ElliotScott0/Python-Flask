@@ -57,39 +57,32 @@ def cat_page():
       return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])
     jResp = response.json()
 
-    host = "128.0.0.4"
+    host = '128.0.0.4'
     port = 81
-    params = {2}  # Adjust the parameter as needed
-
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    server_socket.bind((host, port))
-
-    # Listen for incoming connections
-    server_socket.listen()
-
-    print(f"Listening on {host}:{port}")
-
     
-    # Accept a connection from a client
-    client_socket, client_address = server_socket.accept()
-    print(f"Connection from {client_address}")
-    # Send a response back to the client
-    response = "2"
-    data1 = client_socket.send(response.encode('utf-8'))
 
-    # Receive data from the client
-    data = client_socket.recv(1024).decode('utf-8')
-    print(f"Received: {data}")
-    print(f"Received: {data1}")
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+    try:
+        # Connect to the server
+        client_socket.connect((host, port))
+        
 
-    # Close the connection
-    client_socket.close()
+        # Send data to the server
+        message = 2
+        client_socket.sendall(message.encode('utf-8'))
 
+        # Receive data from the server
+        data = client_socket.recv(1024).decode('utf-8')
+        print(f"Received from server: {data}")
 
-    rec = response.json()
+    except Exception as e:
+        print(f"Error: {e}")
 
+    finally:
+        # Close the socket
+        client_socket.close()
+        print("Connection closed")
     # Construct the HTML string
     html = "<h1>List of Movies</h1>"
     html += "<ul>"

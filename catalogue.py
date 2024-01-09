@@ -60,7 +60,7 @@ def cat_page():
     url = "http://128.0.0.4:81"
     params = {2}  # Adjust the parameter as needed
 
-    response = requests.get(url, params="2", allow_redirects=True)
+    response = requests.get(url, params="2")
     print(response)
 
 

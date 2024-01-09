@@ -1,7 +1,7 @@
 from datetime import *
 import time
 import sys
-
+import socket
 import json
 import requests
 # First we set our credentials
@@ -57,16 +57,36 @@ def cat_page():
       return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])
     jResp = response.json()
 
-    url = "http://128.0.0.4:81"
+    url = "http://128.0.0.4"
+    port = "80"
     params = {2}  # Adjust the parameter as needed
 
-    response = requests.get(url, params="2")
-    print(response)
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    server_socket.bind((url, port))
+
+    # Listen for incoming connections
+    server_socket.listen()
+
+    print(f"Listening on {url}:{port}")
+
+    
+    # Accept a connection from a client
+    client_socket, client_address = server_socket.accept()
+    print(f"Connection from {client_address}")
+    # Send a response back to the client
+    response = "2"
+    data1 = client_socket.send(response.encode('utf-8'))
+
+    # Receive data from the client
+    data = client_socket.recv(1024).decode('utf-8')
+    print(f"Received: {data}")
+    print(f"Received: {data1}")
 
 
-    if response.status_code != 200:
-        print("Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status_code, response.text))
-        return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status_code, response.text)
+    # Close the connection
+    client_socket.close()
+
 
     rec = response.json()
 

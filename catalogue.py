@@ -58,7 +58,7 @@ def cat_page():
     jResp = response.json()
 
     host = "128.0.0.4"
-    port = 80
+    port = 81
     params = {2}  # Adjust the parameter as needed
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

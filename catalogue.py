@@ -62,8 +62,9 @@ def cat_page():
     
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
+    
     try:
+        html = "<h1>Movie for you</h1>"
         # Connect to the server
         client_socket.connect((host, port))
         
@@ -75,6 +76,7 @@ def cat_page():
         # Receive data from the server
         data = client_socket.recv(1024).decode('utf-8')
         print(f"Received from server: {data}")
+        html = html + '"<h3>'+data+'</h3>"'
 
     except Exception as e:
         print(f"Error: {e}")
@@ -84,8 +86,7 @@ def cat_page():
         client_socket.close()
         print("Connection closed")
     # Construct the HTML string
-    html = "<h1>List of Movies</h1>"
-    html = html + '"<h3>'+data+'</h3>"'
+   
     html=html+"<h2> Your Videos</h2>"
     for index in jResp:
        #print (json.dumps(index))

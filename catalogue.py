@@ -108,8 +108,8 @@ def cat_page():
         print("Connection closed")
 
     html = "<h1>Movie for you</h1>"
-    for i in data:
-            html = html + '<h3>'+data[i]+'<h3>'
+    for line in lines:
+            html += '<h3>' + line.split(":")[0] + '</h3>'
 
     html=html+"<h2> Your Videos</h2>"
     for index in jResp:

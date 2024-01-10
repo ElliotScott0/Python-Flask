@@ -81,13 +81,13 @@ def cat_page():
         i = 0
         for i in range (11):
    
-            data = client_socket.recv(1024).decode('utf-8')
-            catalogue_app.logger.debug(data + "AAHH")
-            if not data:
+            received_data = client_socket.recv(1024).decode('utf-8')
+            catalogue_app.logger.debug(received_data + "AAHH")
+            if not received_data:
                 catalogue_app.logger.debug("data breaks")
                 break
     
-            html = html + '<h3>'+data+'<h3>'
+            html = html + '<h3>'+received_data+'<h3>'
 
         # Decode the received data (assuming it's a string)
         

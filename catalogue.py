@@ -82,7 +82,7 @@ def cat_page():
         for i in range (11):
    
             data = client_socket.recv(1024).decode('utf-8')
-            catalogue_app.logger.debug(data)
+            catalogue_app.logger.debug(data + "AAHH")
             if not data:
                 catalogue_app.logger.debug("data breaks")
                 break

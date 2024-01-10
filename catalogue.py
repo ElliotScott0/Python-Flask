@@ -79,14 +79,15 @@ def cat_page():
         # Receive and print data from the server
         received_data = b''
         i = 0
-        for i in range(10):    
-            data = client_socket.recv(1024).decode('utf-8')
-            catalogue_app.logger.debug(data)
-            if not data:
-                catalogue_app.logger.debug("data breaks")
-                break
+        #while True:
+   
+        data = client_socket.recv(1024).decode('utf-8')
+        catalogue_app.logger.debug(data)
+            #if not data:
+                #catalogue_app.logger.debug("data breaks")
+                #break
     
-            html = html + '<h3>'+data+'<h3>'
+            #html = html + '<h3>'+data+'<h3>'
 
         # Decode the received data (assuming it's a string)
         
@@ -103,7 +104,7 @@ def cat_page():
         # Close the socket
         client_socket.close()
         catalogue_app.logger.debug("Connection closed")
-        
+        print("Connection closed")
 
     
 

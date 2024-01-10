@@ -75,8 +75,23 @@ def cat_page():
 
         # Receive data from the server
         
-        data = client_socket.recv(1024).decode('utf-8')
-        html = html + '<h3>'+data+'</h3>'
+        received_data = b''
+        while True:
+            partial_data = client_socket.recv(1024)
+            if not partial_data:
+                break
+            received_data += partial_data
+
+        # Decode the received data
+        decoded_data = received_data.decode('utf-8')
+
+        # Split the received data based on the colon
+        recommended_movie, recommended_tags = decoded_data.strip().split(':')
+
+        # Now you can use the values as needed
+        print("Recommended Movie:", recommended_movie)
+        for tag in recommended_movie:
+            html = html + '<h3>'+recommended_movie[tag]+'<h3>'
         
         client_socket.close()
     except Exception as e:

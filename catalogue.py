@@ -80,7 +80,7 @@ def cat_page():
         time.sleep(0.5)
 
         data = client_socket.recv(1024).decode('utf-8')
-        catalogue_app.logger.debug(data[3])
+        catalogue_app.logger.debug(data)
         lines = data.strip().split('\n')
         for line in lines:
             html += '<h3>' + line.split(":")[0] + '</h3>'
@@ -100,6 +100,7 @@ def cat_page():
 
     html = "<h1>Movie for you</h1>"
     for line in lines:
+            catalogue_app.logger.debug("lines")
             html += '<h3>' + line.split(":")[0] + '</h3>'
 
     html=html+"<h2> Your Videos</h2>"

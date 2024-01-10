@@ -56,7 +56,7 @@ def cat_page():
     # exit if status code is not ok
     print (response)
     print (response.status_code)
-    lines = "no recomended movies currently"
+    lines = "no recomended movies currently: "
     if response.status_code != 200:
       print("Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message']))
       return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])

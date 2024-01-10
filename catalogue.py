@@ -4,6 +4,8 @@ import sys
 import socket
 import json
 import requests
+import logging
+
 # First we set our credentials
 
 from flask import Flask, Blueprint, request, session, g, redirect, url_for, abort, \
@@ -77,16 +79,18 @@ def cat_page():
         # Receive and print data from the server
         received_data = b''
         while True:
-            data = client_socket.recv(1024)
+            data = client_socket.recv(1024).decode('utf-8')
+            catalogue_app.logger.debug(data)
             if not data:
                 break
-            received_data += data
+            html = html + '<h3>'+data+'<h3>'
 
         # Decode the received data (assuming it's a string)
-        decoded_data = received_data.decode('utf-8')
+        
 
         # Print or process the received data
-        print(decoded_data)
+        
+        
 
     except Exception as e:
         print(f"Error: {e}")

@@ -79,6 +79,7 @@ def cat_page():
         while True:
             partial_data = client_socket.recv(1024)
             if not partial_data:
+                client_socket.close()
                 break
             received_data += partial_data
 

@@ -56,6 +56,7 @@ def cat_page():
     # exit if status code is not ok
     print (response)
     print (response.status_code)
+    lines = "no recomended movies currently"
     if response.status_code != 200:
       print("Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message']))
       return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])
@@ -68,33 +69,21 @@ def cat_page():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     try:
-        html = "<h1>Movie for you</h1>"
-        # Connect to the server
+    
+
         client_socket.connect((host, port))
         
 
-        # Send data to the server
         message = "2"
         client_socket.sendall(message.encode('utf-8'))
 
         time.sleep(0.5)
-        # Receive and print data from the server
-        
-        i = 0
-        
+
         data = client_socket.recv(1024).decode('utf-8')
         catalogue_app.logger.debug(data[3])
         lines = data.strip().split('\n')
 
-        # Iterate over each line and append to the HTML
-        for line in lines:
-            html += '<h3>' + line.split(":")[0] + '</h3>'
 
-        # Decode the received data (assuming it's a string)
-        
-        
-        # Print or process the received data
-        
         
 
     except Exception as e:

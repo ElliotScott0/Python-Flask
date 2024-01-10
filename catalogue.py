@@ -66,7 +66,7 @@ def cat_page():
     try:
         html = "<h1>Movie for you</h1>"
         # Connect to the server
-        client_socket.connect((host, port))
+        client_socket.bind((host, port))
         
 
         # Send data to the server
@@ -100,6 +100,7 @@ def cat_page():
         
         client_socket.close()
     except Exception as e:
+        
         client_socket.close()
         print(f"Error: {e}")
 

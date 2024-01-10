@@ -73,45 +73,31 @@ def cat_page():
         message = "2"
         client_socket.sendall(message.encode('utf-8'))
 
-        # Receive data from the server
-        
-        #received_data = b''
-        #for i in range(5):
-            #data = client_socket.recv(1024).decode('utf-8')
-           # print(data)
-            #if not data:
-            #    break
-           # received_data += data
+       
+        # Receive and print data from the server
+        received_data = b''
+        while True:
+            data = client_socket.recv(1024)
+            if not data:
+                break
+            received_data += data
 
-        # Decode the received data
-        data = client_socket.recv(1024).decode('utf-8')
+        # Decode the received data (assuming it's a string)
+        decoded_data = received_data.decode('utf-8')
 
-        # Deserialize the JSON data into a list of movies
-        
+        # Print or process the received data
+        print(decoded_data)
 
-        # Decode the received data
-        
-
-        # Split the received data based on the colon
-        
-
-        # Now you can use the values as needed
-        print("Recommended Movie:", data)
-        for tag in data:
-            html = html + '<h3>'+data[tag]+'<h3>'
-        
-        client_socket.close()
     except Exception as e:
-        
-        client_socket.close()
         print(f"Error: {e}")
 
     finally:
         # Close the socket
         client_socket.close()
         print("Connection closed")
-    # Construct the HTML string
-    client_socket.close()
+
+    
+
     html=html+"<h2> Your Videos</h2>"
     for index in jResp:
        #print (json.dumps(index))

@@ -82,17 +82,20 @@ def cat_page():
             data = client_socket.recv(1024).decode('utf-8')
             catalogue_app.logger.debug(data)
             if not data:
+                catalogue_app.logger.debug("data breaks")
                 break
+    
             html = html + '<h3>'+data+'<h3>'
 
         # Decode the received data (assuming it's a string)
         
-
+        catalogue_app.logger.debug("gets out of loop")
         # Print or process the received data
         
         
 
     except Exception as e:
+        catalogue_app.logger.debug(f"Error: {e}")
         print(f"Error: {e}")
 
     finally:

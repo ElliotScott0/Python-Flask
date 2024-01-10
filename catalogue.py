@@ -83,7 +83,7 @@ def cat_page():
         i = 0
         
         data = client_socket.recv(1024).decode('utf-8')
-        
+        catalogue_app.logger.debug(data)
         #for i in received_data:
             #html = html + '<h3>'+received_data[i]+'<h3>'
 

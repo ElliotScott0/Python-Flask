@@ -106,7 +106,7 @@ def cat_page():
     html = "<h1>Movie for you</h1>"
     for line in lines:
         catalogue_app.logger.debug(line)     
-        html += '<h3>' + line.split(":")[0] + '</h3>'
+        html=html+'<h3>'+line.split(":")[0]+'</h3>'
 
     html=html+"<h2> Your Videos</h2>"
     for index in jResp:

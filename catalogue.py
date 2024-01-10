@@ -88,7 +88,7 @@ def cat_page():
 
         # Iterate over each line and append to the HTML
         for line in lines:
-            html += '<h3>' + line.split(":")[1] + '</h3>'
+            html += '<h3>' + line.split(":")[0] + '</h3>'
 
         # Decode the received data (assuming it's a string)
         

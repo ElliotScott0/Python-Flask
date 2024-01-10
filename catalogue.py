@@ -79,18 +79,11 @@ def cat_page():
 
         time.sleep(0.5)
         # Receive and print data from the server
-        received_data = b''
+        
         i = 0
         
-        data = client_socket.recv(1024)
-        catalogue_app.logger.debug(data)
-            
-               
-            
-
-        # Decode the received data
-        received_data = received_data.decode('utf-8')
-        catalogue_app.logger.debug(received_data)
+        data = client_socket.recv(1024).decode('utf-8')
+        
         #for i in received_data:
             #html = html + '<h3>'+received_data[i]+'<h3>'
 

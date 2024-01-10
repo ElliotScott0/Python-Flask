@@ -62,7 +62,7 @@ def cat_page():
     
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    html = "<h1>Movie for you</h1>"
+    
     try:
         html = "<h1>Movie for you</h1>"
         # Connect to the server
@@ -76,11 +76,12 @@ def cat_page():
         message = "2"
         client_socket.sendall(message.encode('utf-8'))
 
-        client_socket.listen()
-        conn, addr = client_socket.accept()
-
+        
         received_data = b''
         while True:
+            client_socket.listen(10)
+            conn, addr = client_socket.accept()
+
             data = conn.recv(1024)
             if not data:
                 break

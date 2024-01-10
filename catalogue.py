@@ -82,6 +82,8 @@ def cat_page():
         data = client_socket.recv(1024).decode('utf-8')
         catalogue_app.logger.debug(data[3])
         lines = data.strip().split('\n')
+        for line in lines:
+            html += '<h3>' + line.split(":")[0] + '</h3>'
 
 
         

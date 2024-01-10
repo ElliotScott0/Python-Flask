@@ -77,6 +77,7 @@ def cat_page():
         data = client_socket.recv(1024).decode('utf-8')
         print(f"Received from server: {data}")
         html = html + '<h2>'+data+'</h2>'
+        client_socket.close()
 
     except Exception as e:
         print(f"Error: {e}")

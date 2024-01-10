@@ -67,7 +67,6 @@ def cat_page():
         html = "<h1>Movie for you</h1>"
         # Connect to the server
         client_socket.connect((host, port))
-        
 
         # Send data to the server
         message = "2"
@@ -76,16 +75,17 @@ def cat_page():
         received_data = b''
         # Receive data from the server
         while True:
-            partial_data = client_socket.recv(1024).decode('utf-8')
+            partial_data = client_socket.recv(1024)
             if not partial_data:
                 break
             received_data += partial_data
-        decoded_data = received_data
-        for value in decoded_data:
-           html = html + ('<h3>' + value + '</h3>')
 
+        # Decode the received data
+        decoded_data = received_data.decode('utf-8')
 
-        client_socket.close()
+        # Assuming decoded_data is a list of tuples, extract the second element of each tuple
+        for value in eval(decoded_data):
+            html = html + ('<h3>' + str(value[0]) + '</h3>')
 
     except Exception as e:
         print(f"Error: {e}")

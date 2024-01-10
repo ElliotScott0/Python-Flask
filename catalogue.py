@@ -76,7 +76,7 @@ def cat_page():
         # Receive data from the server
         
         received_data = b''
-        while True:
+        for i in range(5):
             data = client_socket.recv(1024)
             if not data:
                 break

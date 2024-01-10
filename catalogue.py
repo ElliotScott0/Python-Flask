@@ -69,15 +69,18 @@ def cat_page():
         client_socket.bind((host, port))
         
 
-        # Send data to the server
-        message = "2"
-        client_socket.sendall(message.encode('utf-8'))
-
-        # Receive data from the server
         
+        
+        client_socket.listen()
+        conn, addr = client_socket.accept()
+
+        message = "2"
+        conn.sendall(message.encode('utf-8'))
+
+
         received_data = b''
         while True:
-            data = client_socket.recv(1024)
+            data = conn.recv(1024)
             if not data:
                 break
             received_data += data

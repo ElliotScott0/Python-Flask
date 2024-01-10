@@ -84,9 +84,9 @@ def cat_page():
         decoded_data = received_data.decode('utf-8')
 
         # Assuming decoded_data is a list of tuples, extract the second element of each tuple
-        for value in eval(decoded_data):
-            html = html + ('<h3>' + str(value[0]) + '</h3>')
-
+        for value in decoded_data:
+            html = html + ('<h3>' + decoded_data[value] + '</h3>')
+        client_socket.close()
     except Exception as e:
         print(f"Error: {e}")
 

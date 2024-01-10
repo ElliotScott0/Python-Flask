@@ -78,9 +78,11 @@ def cat_page():
        
         # Receive and print data from the server
         received_data = b''
+        i = 0
         while True:
+            i += 1
             data = client_socket.recv(1024).decode('utf-8')
-            catalogue_app.logger.debug(data)
+            catalogue_app.logger.debug(data + i)
             if not data:
                 catalogue_app.logger.debug("data breaks")
                 break

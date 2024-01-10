@@ -81,7 +81,9 @@ def cat_page():
         i = 0
         while True:
             data = client_socket.recv(1024)
+            catalogue_app.logger.debug(client_socket.recv(1024))
             if not data:
+                catalogue_app.logger.debug("gets out of loop")
                 break
             received_data += data
 
@@ -93,7 +95,7 @@ def cat_page():
 
         # Decode the received data (assuming it's a string)
         
-        catalogue_app.logger.debug("gets out of loop")
+        
         # Print or process the received data
         
         

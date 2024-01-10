@@ -74,9 +74,16 @@ def cat_page():
         client_socket.sendall(message.encode('utf-8'))
 
         # Receive data from the server
-        data = client_socket.recv(1024).decode('utf-8')
-        print(f"Received from server: {data}")
-        html = html + '<h2>'+data+'</h2>'
+        while True:
+            partial_data = client_socket.recv(1024)
+            if not partial_data:
+                break
+            received_data += partial_data
+        decoded_data = received_data.decode('utf-8')
+        for value in decoded_data:
+           html = html + ('<h3>' + value + '</h3>')
+
+
         client_socket.close()
 
     except Exception as e:

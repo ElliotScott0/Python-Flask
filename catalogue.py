@@ -71,12 +71,13 @@ def cat_page():
 
         
         
-        client_socket.listen()
-        conn, addr = client_socket.accept()
+        
 
         message = "2"
-        conn.sendall(message.encode('utf-8'))
+        client_socket.sendall(message.encode('utf-8'))
 
+        client_socket.listen()
+        conn, addr = client_socket.accept()
 
         received_data = b''
         while True:

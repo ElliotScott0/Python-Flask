@@ -113,8 +113,9 @@ def cat_page():
         client_socket.close()
         print("Connection closed")
     # Construct the HTML string
+        
     client_socket.close()
-    html=html+"<h2> Your Videos</h2>"
+    html=html+"<h2> Your Vi</h2>"
     for index in jResp:
        #print (json.dumps(index))
        print ("----------------")

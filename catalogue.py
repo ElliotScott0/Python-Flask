@@ -66,31 +66,27 @@ def cat_page():
     try:
         html = "<h1>Movie for you</h1>"
         # Connect to the server
-        client_socket.connect((host, port))
+        client_socket.bind((host, port))
         
 
-        
-        
-        
-
+        # Send data to the server
         message = "2"
         client_socket.sendall(message.encode('utf-8'))
 
+        # Receive data from the server
         
         received_data = b''
         while True:
-            client_socket.listen(10)
-            conn, addr = client_socket.accept()
-
-            data = conn.recv(1024)
+            data = client_socket.recv(1024)
             if not data:
                 break
             received_data += data
 
         # Decode the received data
-        received_data = received_data.decode('utf-8')
+        received_data_json = received_data.decode('utf-8')
 
-            
+        # Deserialize the JSON data into a list of movies
+        recommended_movies = json.loads(received_data_json)
 
         # Decode the received data
         
@@ -99,9 +95,9 @@ def cat_page():
         
 
         # Now you can use the values as needed
-        print("Recommended Movie:", received_data)
-        for tag in received_data:
-            html = html + '<h3>'+received_data[tag]+'<h3>'
+        print("Recommended Movie:", recommended_movies)
+        for tag in recommended_movies:
+            html = html + '<h3>'+recommended_movies[tag]+'<h3>'
         
         client_socket.close()
     except Exception as e:
@@ -114,9 +110,8 @@ def cat_page():
         client_socket.close()
         print("Connection closed")
     # Construct the HTML string
-        
     client_socket.close()
-    html=html+"<h2> Your Vi</h2>"
+    html=html+"<h2> Your Videos</h2>"
     for index in jResp:
        #print (json.dumps(index))
        print ("----------------")

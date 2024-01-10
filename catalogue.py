@@ -71,22 +71,27 @@ def cat_page():
     try:
     
 
+        html = "<h1>Movie for you</h1>"
+        # Connect to the server
         client_socket.connect((host, port))
         
-
+        # Send data to the server
         message = "2"
         client_socket.sendall(message.encode('utf-8'))
 
         time.sleep(0.5)
-
+        # Receive and print data from the server
+        
         data = client_socket.recv(1024).decode('utf-8')
-        catalogue_app.logger.debug(data)
+        catalogue_app.logger.debug(data[3])
         lines = data.strip().split('\n')
+        # Iterate over each line and append to the HTML
         for line in lines:
             html += '<h3>' + line.split(":")[0] + '</h3>'
-
-
+        # Decode the received data (assuming it's a string)
         
+        
+        # Print or process the received data
 
     except Exception as e:
         catalogue_app.logger.debug(f"Error: {e}")
@@ -100,8 +105,8 @@ def cat_page():
 
     html = "<h1>Movie for you</h1>"
     for line in lines:
-        catalogue_app.logger.debug("lines")
-        html = html + '<h3>' + line.split(":")[0] + '</h3>'
+        catalogue_app.logger.debug("lines")       
+        html += '<h3>' + line.split(":")[0] + '</h3>'
 
     html=html+"<h2> Your Videos</h2>"
     for index in jResp:

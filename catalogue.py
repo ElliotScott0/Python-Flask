@@ -84,12 +84,12 @@ def cat_page():
         client_socket.close()
         print("Connection closed")
     # Construct the HTML string
-    html = "<h1>List of Movies</h1>"
+    html = "<h1>Movie of the day</h1>"
     html += "<ul>"
     
     # Loop through movies and add list items to HTML string
-    for movie in data:
-        html += f"<li>{movie}</li>"
+    
+    html += f"<li>{data}</li>"
 
     html += "</ul>"
     html=html+"<h2> Your Videos</h2>"

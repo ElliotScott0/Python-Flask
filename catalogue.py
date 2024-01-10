@@ -75,7 +75,7 @@ def cat_page():
 
         # Receive data from the server
         
-        data = client_socket.recv(16).decode('utf-8')
+        data = client_socket.recv(1024).decode('utf-8')
         html = html + '<h3>'+data+'</h3>'
         
         client_socket.close()

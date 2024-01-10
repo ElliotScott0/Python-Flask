@@ -66,7 +66,7 @@ def cat_page():
     
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    
+    data
     try:
         html = "<h1>Movie for you</h1>"
         # Connect to the server
@@ -84,8 +84,11 @@ def cat_page():
         
         data = client_socket.recv(1024).decode('utf-8')
         catalogue_app.logger.debug(data[3])
-        for i in data:
-            html = html + '<h3>'+data[i]+'<h3>'
+        lines = data.strip().split('\n')
+
+        # Iterate over each line and append to the HTML
+        for line in lines:
+            html += '<h3>' + line.split(":")[1] + '</h3>'
 
         # Decode the received data (assuming it's a string)
         

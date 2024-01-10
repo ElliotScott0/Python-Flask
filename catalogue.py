@@ -56,7 +56,7 @@ def cat_page():
     # exit if status code is not ok
     print (response)
     print (response.status_code)
-    lines = "no recomended movies currently: "
+    lines = ""
     if response.status_code != 200:
       print("Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message']))
       return "Unexpected response: {0}. Status: {1}. Message: {2}".format(response.reason, response.status, jResp['Exception']['Message'])
@@ -82,8 +82,8 @@ def cat_page():
         time.sleep(0.5)
         # Receive and print data from the server
         
-        data = client_socket.recv(1024)
-        catalogue_app.logger.debug(client_socket.recv(1024))
+        data = client_socket.recv(1024).decode('utf-8')
+        catalogue_app.logger.debug(data)
         lines = data.strip().split('\n')
         # Iterate over each line and append to the HTML
         for line in lines:
@@ -105,7 +105,7 @@ def cat_page():
 
     html = "<h1>Movie for you</h1>"
     for line in lines:
-        catalogue_app.logger.debug("lines")       
+            
         html += '<h3>' + line.split(":")[0] + '</h3>'
 
     html=html+"<h2> Your Videos</h2>"

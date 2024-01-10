@@ -75,16 +75,16 @@ def cat_page():
 
         # Receive data from the server
         
-        received_data = b''
-        for i in range(5):
-            data = client_socket.recv(1024).decode('utf-8')
-            print(data)
-            if not data:
-                break
-            received_data += data
+        #received_data = b''
+        #for i in range(5):
+            #data = client_socket.recv(1024).decode('utf-8')
+           # print(data)
+            #if not data:
+            #    break
+           # received_data += data
 
         # Decode the received data
-        
+        data = client_socket.recv(1024).decode('utf-8')
 
         # Deserialize the JSON data into a list of movies
         

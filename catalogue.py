@@ -81,13 +81,12 @@ def cat_page():
         # Receive and print data from the server
         received_data = b''
         i = 0
-        while True:
-            data = client_socket.recv(1024)
-            catalogue_app.logger.debug(client_socket.recv(1024))
-            if not data:
-                catalogue_app.logger.debug("gets out of loop")
-                break
-            received_data += data
+        
+        data = client_socket.recv(1024)
+        catalogue_app.logger.debug(data)
+            
+               
+            
 
         # Decode the received data
         received_data = received_data.decode('utf-8')

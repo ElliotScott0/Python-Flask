@@ -5,6 +5,8 @@ import socket
 import json
 import requests
 import logging
+import time
+
 
 # First we set our credentials
 
@@ -75,7 +77,7 @@ def cat_page():
         message = "2"
         client_socket.sendall(message.encode('utf-8'))
 
-       
+        time.sleep(0.5)
         # Receive and print data from the server
         received_data = b''
         i = 0

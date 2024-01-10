@@ -84,14 +84,8 @@ def cat_page():
         client_socket.close()
         print("Connection closed")
     # Construct the HTML string
-    html = "<h1>Movie of the day</h1>"
-    html += "<ul>"
-    
-    # Loop through movies and add list items to HTML string
-    
-    html += f"<li>{data}</li>"
-
-    html += "</ul>"
+    html = "<h1>List of Movies</h1>"
+    html = html + '"<h3>'+data+'</h3>"'
     html=html+"<h2> Your Videos</h2>"
     for index in jResp:
        #print (json.dumps(index))

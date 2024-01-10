@@ -77,16 +77,17 @@ def cat_page():
         
         received_data = b''
         for i in range(5):
-            data = client_socket.recv(1024)
+            data = client_socket.recv(1024).decode('utf-8')
+            print(data)
             if not data:
                 break
             received_data += data
 
         # Decode the received data
-        received_data_json = received_data.decode('utf-8')
+        
 
         # Deserialize the JSON data into a list of movies
-        recommended_movies = json.loads(received_data_json)
+        
 
         # Decode the received data
         
@@ -95,9 +96,9 @@ def cat_page():
         
 
         # Now you can use the values as needed
-        print("Recommended Movie:", recommended_movies)
-        for tag in recommended_movies:
-            html = html + '<h3>'+recommended_movies[tag]+'<h3>'
+        print("Recommended Movie:", data)
+        for tag in data:
+            html = html + '<h3>'+data[tag]+'<h3>'
         
         client_socket.close()
     except Exception as e:

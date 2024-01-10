@@ -66,7 +66,7 @@ def cat_page():
     
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    data
+    
     try:
         html = "<h1>Movie for you</h1>"
         # Connect to the server

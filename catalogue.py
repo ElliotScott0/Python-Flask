@@ -104,7 +104,9 @@ def cat_page():
         catalogue_app.logger.debug("Connection closed")
         print("Connection closed")
 
-    
+    html = "<h1>Movie for you</h1>"
+    for i in data:
+            html = html + '<h3>'+data[i]+'<h3>'
 
     html=html+"<h2> Your Videos</h2>"
     for index in jResp:

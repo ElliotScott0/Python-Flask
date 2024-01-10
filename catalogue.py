@@ -73,13 +73,14 @@ def cat_page():
         message = "2"
         client_socket.sendall(message.encode('utf-8'))
 
+        received_data = b''
         # Receive data from the server
         while True:
-            partial_data = client_socket.recv(1024)
+            partial_data = client_socket.recv(1024).decode('utf-8')
             if not partial_data:
                 break
             received_data += partial_data
-        decoded_data = received_data.decode('utf-8')
+        decoded_data = received_data
         for value in decoded_data:
            html = html + ('<h3>' + value + '</h3>')
 

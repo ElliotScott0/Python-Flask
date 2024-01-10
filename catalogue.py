@@ -91,12 +91,12 @@ def cat_page():
         
 
         # Split the received data based on the colon
-        recommended_movie, recommended_tags = data.strip().split(':')
+        
 
         # Now you can use the values as needed
-        print("Recommended Movie:", recommended_movie)
-        for tag in recommended_movie:
-            html = html + '<h3>'+recommended_movie[tag]+'<h3>'
+        print("Recommended Movie:", received_data)
+        for tag in received_data:
+            html = html + '<h3>'+received_data[tag]+'<h3>'
         
         client_socket.close()
     except Exception as e:

@@ -66,7 +66,7 @@ def cat_page():
     try:
         html = "<h1>Movie for you</h1>"
         # Connect to the server
-        client_socket.bind((host, port))
+        client_socket.connect((host, port))
         
 
         

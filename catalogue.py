@@ -82,8 +82,8 @@ def cat_page():
         time.sleep(0.5)
         # Receive and print data from the server
         
-        data = client_socket.recv(1024).decode('utf-8')
-        catalogue_app.logger.debug(data[3])
+        data = client_socket.recv(1024)
+        catalogue_app.logger.debug(client_socket.recv(1024))
         lines = data.strip().split('\n')
         # Iterate over each line and append to the HTML
         for line in lines:

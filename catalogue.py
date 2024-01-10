@@ -62,7 +62,7 @@ def cat_page():
     
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.close()
+    
     try:
         html = "<h1>Movie for you</h1>"
         # Connect to the server
@@ -76,8 +76,15 @@ def cat_page():
         # Receive data from the server
         
         received_data = b''
-        
-        data = client_socket.recv(1024).decode('utf-8')
+        while True:
+            data = client_socket.recv(1024)
+            if not data:
+                break
+            received_data += data
+
+        # Decode the received data
+        received_data = received_data.decode('utf-8')
+
             
 
         # Decode the received data
